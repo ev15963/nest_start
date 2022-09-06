@@ -319,6 +319,9 @@ typings/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+# node_modules
+./node_modules/
+
 # Paket dependency manager
 .paket/paket.exe
 paket-files/
