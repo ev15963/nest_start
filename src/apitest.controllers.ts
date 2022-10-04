@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 // import { get } from 'http';
 import { ApitestService } from './apitest.service';
 
-@Controller('/api')
+@Controller('/apitest')
 export class ApitestController {
 
     constructor(private readonly apitestservice: ApitestService) {}
