@@ -8,7 +8,7 @@ export class ApitestController {
     constructor(private readonly apitestservice: ApitestService) {}
 
     @Get()
-    apitest1(): string {
+    apitest1(): Promise<string> {
         console.log('api in');
 
         const result = this.apitestservice.apitest1();
