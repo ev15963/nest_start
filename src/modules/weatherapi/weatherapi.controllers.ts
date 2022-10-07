@@ -11,7 +11,7 @@ export class WeatherapiController {
     weathertest() {
         const result = this.weatherapiservice.weatherapi();
 
-        // return result;
+        return result;
     }
 
     @Get('/start-sample')
