@@ -10,13 +10,14 @@ export class WeatherapiService {
     @Cron('5 * * * * *', {name: 'cronTest'})
     async weatherapi(): Promise<string> {
         console.log('weather in');
-        this.logger.log('Task Called');
         const result = await this.httpService.get(
             'https://openapi.gg.go.kr/Sidoatmospolutnmesure?TYPE=json',
-
-        )
+            
+            )
         const value = await lastValueFrom(result);
+        
+        this.logger.log(value.data.Sidoatmospolutnmesure[1].row[0].SIGUN_NM);
 
-        return value.data;
+        return value.data.Sidoatmospolutnmesure[1].row[0];
     }
 }
