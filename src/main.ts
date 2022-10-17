@@ -1,7 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-// import {  }s
+// import * as dotenv from 'dotenv';
+// import * as path from 'path';
+
+// dotenv.config({
+//   path: path.resolve(
+//     (process.env.DB_CONNECTION_LIMIT === '50') ? '.config.env' : 'not config env'
+//   )
+// })
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -41,6 +49,10 @@ async function bootstrap() {
   // );
   // //setupSwagger(app)
   // app.useGlobalFilters(new HttpExceptionFilter());
+
+
+
+
 
   await app.listen(3000);
 
