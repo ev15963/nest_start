@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
+import { Controller, Get, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
 import { PipeService } from "./pipe.service";
 
 @Controller('/pipetest')
@@ -12,7 +12,7 @@ export class PipeController {
     }
 
     @Get(':id')
-    pipetest(@Param('id', ParseIntPipe) id: number) {
+    pipetest(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number) {
         console.log('pipe controllers in');
         const result = this.pipetestservice.pipetest(id);
 
