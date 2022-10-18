@@ -10,7 +10,7 @@ console.log('module in');
   imports: [
     ConfigModule.forRoot({
       envFilePath:
-        process.env.DB_CONNECTION_LIMIT === "50" ? "./env/.config.env" : "no config",
+        process.env.NODE_ENV === "dev" ? './env/.config.env' : 'not config env',
     }),
     CatsModule,
     ApitestModule,

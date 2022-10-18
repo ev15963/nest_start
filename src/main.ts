@@ -1,14 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-// import * as dotenv from 'dotenv';
-// import * as path from 'path';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 
-// dotenv.config({
-//   path: path.resolve(
-//     (process.env.DB_CONNECTION_LIMIT === '50') ? '.config.env' : 'not config env'
-//   )
-// })
+
+dotenv.config({
+  path: path.resolve(
+    (process.env.NODE_ENV === 'dev') ? './env/.config.env' : 'not config env'
+  )
+})
 
 
 async function bootstrap() {
@@ -46,7 +47,7 @@ async function bootstrap() {
   //     whitelist: true,
   //     transform: true,
   //   }),
-  // );
+  // ); 
   // //setupSwagger(app)
   // app.useGlobalFilters(new HttpExceptionFilter());
 
@@ -56,6 +57,7 @@ async function bootstrap() {
 
   await app.listen(3000);
 
+  console.log(process.env.LOGGING, 'is true');
   console.log('main in');
 }
 bootstrap();

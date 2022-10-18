@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 export class CatsService {
     getCat(): string {
         console.log('cats service in');
-        const result = process.env.DB_CONNECTION_LIMIT;
+        const result = process.env.LOGGING;
         console.log(result, 'dfdfd');
         return result;
     }
