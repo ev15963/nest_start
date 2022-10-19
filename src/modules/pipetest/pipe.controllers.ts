@@ -1,5 +1,7 @@
-import { Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Query } from "@nestjs/common";
+import { Body, Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Post, Query, ValidationPipe } from "@nestjs/common";
+import { CreateUserDto } from "src/dto/apitest/request/create-user.dto";
 import { PipeService } from "./pipe.service";
+// import { ValidationPipe } from './validation.pipe';
 
 @Controller('/pipetest')
 export class PipeController {
@@ -9,6 +11,11 @@ export class PipeController {
     @Get('/')
     test() {
         return 'dddd';
+    }
+
+    @Post('/users')
+    create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
+        return this.pipetestservice.create(createUserDto);
     }
 
     @Get('/default')

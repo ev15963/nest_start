@@ -3,6 +3,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import { ValidationPipe } from '@nestjs/common';
 
 
 dotenv.config({
@@ -52,6 +53,9 @@ async function bootstrap() {
   // app.useGlobalFilters(new HttpExceptionFilter());
 
 
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+  }));
 
 
 
