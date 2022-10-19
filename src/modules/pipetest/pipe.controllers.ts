@@ -1,11 +1,13 @@
-import { Body, Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Post, Query, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, DefaultValuePipe, Get, HttpStatus, NotFoundException, Param, ParseIntPipe, Post, Query, ValidationPipe } from "@nestjs/common";
 import { CreateUserDto } from "src/dto/apitest/request/create-user.dto";
 import { PipeService } from "./pipe.service";
+import { AuthService } from "./auth.service";
 // import { ValidationPipe } from './validation.pipe';
 
 @Controller('/pipetest')
 export class PipeController {
-    constructor(private readonly pipetestservice: PipeService) {}
+    constructor(private readonly pipetestservice: PipeService, 
+        private readonly authuserservice: AuthService) {}
 
 
     @Get('/')
@@ -16,6 +18,22 @@ export class PipeController {
     @Post('/users')
     create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
         return this.pipetestservice.create(createUserDto);
+    }
+
+    // @Post('/users/email-verify')
+    @Post('/users/login')
+    async login(email: string, password: string): Promise<string> {
+        const user = await this.authuserservice.findOne({ email, password });
+
+        if(!user) {
+            throw new NotFoundException('유저가 존재하지 않습니다.');
+        }
+
+        // return this.authuserservice.login({
+        //     id: user.id,
+        //     name: user.name,
+        //     email: user.email,
+        // });
     }
 
     @Get('/default')
