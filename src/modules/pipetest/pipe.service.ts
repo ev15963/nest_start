@@ -9,5 +9,10 @@ export class PipeService {
 
         return result;
     }
+
+    pipetest1() {
+        console.log('pipetest1');
+        
+    }
 }
 
