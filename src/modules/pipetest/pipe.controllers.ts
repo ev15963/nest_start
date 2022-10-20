@@ -1,7 +1,7 @@
-import { Body, Controller, DefaultValuePipe, Get, HttpStatus, NotFoundException, Param, ParseIntPipe, Post, Query, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, DefaultValuePipe, Get, HttpStatus, NotFoundException, Param, ParseIntPipe, Post, Query, UseGuards, ValidationPipe } from "@nestjs/common";
 import { CreateUserDto } from "src/dto/apitest/request/create-user.dto";
 import { PipeService } from "./pipe.service";
-import { AuthService } from "./auth.service";
+import { AuthService } from "../auth/auth.service";
 // import { ValidationPipe } from './validation.pipe';
 
 @Controller('/pipetest')
@@ -21,20 +21,20 @@ export class PipeController {
     }
 
     // @Post('/users/email-verify')
-    @Post('/users/login')
-    async login(email: string, password: string): Promise<string> {
-        const user = await this.authuserservice.findOne({ email, password });
+    // @Post('/users/login')
+    // async login(email: string, password: string): Promise<string> {
+    //     const user = await this.authuserservice.findOne({ email, password });
 
-        if(!user) {
-            throw new NotFoundException('유저가 존재하지 않습니다.');
-        }
+    //     if(!user) {
+    //         throw new NotFoundException('유저가 존재하지 않습니다.');
+    //     }
 
-        // return this.authuserservice.login({
-        //     id: user.id,
-        //     name: user.name,
-        //     email: user.email,
-        // });
-    }
+    //     // return this.authuserservice.login({
+    //     //     id: user.id,
+    //     //     name: user.name,
+    //     //     email: user.email,
+    //     // });
+    // }
 
     @Get('/default')
     findAll(
@@ -54,4 +54,6 @@ export class PipeController {
 
         return result;
     }
+
+    // @UseGuards(Jw)
 }
