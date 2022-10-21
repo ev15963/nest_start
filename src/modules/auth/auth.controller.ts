@@ -36,22 +36,24 @@ export class AuthController {
     // }
 
 
-    @Post('/test')
-    @ApiBearerAuth()
-    @UseGuards(AuthGuard())
-    authtest() {
-        console.log('authtest in');
+    // @Post('/test')
+    // @ApiBearerAuth()
+    // @UseGuards(AuthGuard())
+    // authtest() {
+    //     console.log('authtest in');
 
-        // const result = this.authservice.login(user);
+    //     // const result = this.authservice.login(user);
 
-        // return result;
-        return 'ddd';
-    }
+    //     // return result;
+    //     return 'ddd';
+    // }
 
     // 회원가입 메일 인증 전송 api
     @Post()
-    async createUser(@Body() name: string, email: string, password: string) : Promise<void> {
+    async createUser(@Body('name') name: string, @Body('email') email: string, @Body('password') password: string) : Promise<void> {
+        console.log(name, 'name');
         await this.authservice.createUser(name, email, password);
+        
     }
 
 //    @Get(':id')

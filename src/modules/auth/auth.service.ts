@@ -27,9 +27,6 @@ export class AuthService {
         
     // }
 
-    async verifyEmail({sugnupVerifyToken}) {
-        
-    }
 
     async createUser(name: string, email: string, password: string) {
         const signupVerifyToken = uuid.v1();
@@ -42,13 +39,13 @@ export class AuthService {
         await this.emailService.sendMemberJoinVerification(email, signupVerifyToken);
     }
 
-    login(user: User){
-        const payload = { ...user};
+    // login(user: User){
+    //     const payload = { ...user};
 
-        return jwt.sign(payload, process.env.JWT_SECRET, {
-            expiresIn: '1d',
-            audience: 'example.com',
-            issuer: 'example.com',
-        });
-    }
+    //     return jwt.sign(payload, process.env.JWT_SECRET, {
+    //         expiresIn: '1d',
+    //         audience: 'example.com',
+    //         issuer: 'example.com',
+    //     });
+    // }
 }
