@@ -1,4 +1,4 @@
-import { Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, NotFoundException, Post, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { JwtAuthGuard } from "src/grard/auth.guard";
@@ -47,4 +47,31 @@ export class AuthController {
         // return result;
         return 'ddd';
     }
+
+    // 회원가입 메일 인증 전송 api
+    @Post()
+    async createUser(@Body() name: string, email: string, password: string) : Promise<void> {
+        await this.authservice.createUser(name, email, password);
+    }
+
+//    @Get(':id')
+//    async getUserInfo (@Headers() headers: any, @Param{'id'} userId: string): Promise<string> {
+    
+//    }
+   
+//    @Post('/email-verify')
+//    async verifyEmail(signupVerifyToken: string) :Promise<string> {
+//         const user = await this.authservice.verifyEmail({signupVerifyToken});
+
+//         if (!user) {
+//             throw new NotFoundException('유저가 존재하지 않습니다.');
+//         }
+
+//         return this.authservice.login({
+//             id: user.id,
+//             name: user.name,
+//             email: user.email,
+//         })
+//     }
+
 }
