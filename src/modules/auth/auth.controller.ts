@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, NotFoundException, Post, Query, UseGuards, Headers, Param } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { ApiBearerAuth } from "@nestjs/swagger";
 import { JwtAuthGuard } from "src/grard/auth.guard";
@@ -78,5 +78,43 @@ export class AuthController {
             email: user.email,
         })
     }
+    
+    @UseGuards(AuthGuard())
+    @Post('/login')
+    async login(@Body('email') email: string, @Body('password') password: string, @Headers() headers: any): Promise<string> {
+        console.log('/login in');
+        // console.log(headers, 'headers');
+        const user = await this.authservice.findOne({email, password});
+        console.log(user, 'user')
+        if (!user) {
+            throw new NotFoundException('유저가 존재하지 않습니다.');
+        }
+
+        return this.authservice.login({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+        })
+    }
+
+    // @Get('/users/:id')
+    // async getUserInfo(@Headers() headers: any, @Param('id') userName: string): Promise<string> {
+    //     const jwtString = headers.authorization.split('Bearer ')[1];
+    //     console.log(jwtString, 'jwt');
+    //     this.authservice.verify(jwtString);
+
+    //     // return this.authservice.getUserInfo(userId);
+    //     const user= await this.authservice.findOne(userName);
+
+    //     if(!user) {
+    //         throw new NotFoundException('유저가 존재하지 않습니다.');
+    //     }
+
+    //     // return {
+    //     //     id: user.id,
+    //     //     name: user.name,
+    //     //     email: user.email,
+    //     // };
+    // }
 
 }

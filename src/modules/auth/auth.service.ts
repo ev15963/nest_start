@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as jwt from 'jsonwebtoken';
 import * as uuid from 'uuid';
@@ -17,9 +17,9 @@ export class AuthService {
         // readonly jwtService: JwtService, 
         // @Inject()
     ) {}
-    // findOne(signupVerifyToken: Array) {
-        
-    // }
+    // private users: User = [
+    //     new this.users('id', 'name', 'email');
+    // ]
 
     // async validateUser(user_id: string, password: string): Promise<any> {
     //     console.log('authservice');
@@ -58,4 +58,23 @@ export class AuthService {
         // expiresIn: '1h', 	  // 유효기간
         });
     }
+
+    verify(jwtString: string) {
+        try {
+            const payload = jwt.verify(jwtString, process.env.JWT_SECRET) as (jwt.JwtPayload | string) & User;
+
+            const { id, email } = payload;
+
+            return {
+                userId: id,
+                email,
+            }
+        } catch (e) {
+            throw new UnauthorizedException();
+        }
+        
+    }
+    // async getuserInfo(userId: string): Promise<string> {
+    //     const user = await this.
+    // }
 }
