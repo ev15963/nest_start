@@ -26,7 +26,7 @@ export class EmailService {
 
     async sendMemberJoinVerification(email: string, signupVerifyToken: string) {
         // console.log(process);
-        const baseUrl = 'http://localhost:3001';
+        const baseUrl = 'http://localhost:3000';
         console.log(signupVerifyToken);
         const url = `${baseUrl}/auth/email-verify?signupVerifyToken=${signupVerifyToken}`;
 

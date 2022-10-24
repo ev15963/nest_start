@@ -15,7 +15,7 @@ export class AuthService {
     constructor(
         private readonly emailService: EmailService,
         // readonly jwtService: JwtService, 
-        
+        // @Inject()
     ) {}
     // findOne(signupVerifyToken: Array) {
         
@@ -39,13 +39,23 @@ export class AuthService {
         await this.emailService.sendMemberJoinVerification(email, signupVerifyToken);
     }
 
-    // login(user: User){
-    //     const payload = { ...user};
+    findOne(signupVerifyToken: any) {
+        const id = '01FKTS71436TMSNVA0ZYKZEFC1';
+        const name = 'Dexter';
+        const email = 'dexter.haan@gmail.com';
+        return {id: id, name: name, email: email};
+        // return signupVerifyToken;
+    }
 
-    //     return jwt.sign(payload, process.env.JWT_SECRET, {
-    //         expiresIn: '1d',
-    //         audience: 'example.com',
-    //         issuer: 'example.com',
-    //     });
-    // }
+    login(user: User){
+        const payload = { ...user};
+        console.log(payload, 'payload')
+        return jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: '1d',
+            // audience: 'example.com',
+            // issuer: 'example.com',
+            algorithm: 'HS256', // 암호화 알고리즘
+        // expiresIn: '1h', 	  // 유효기간
+        });
+    }
 }
