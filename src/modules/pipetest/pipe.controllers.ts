@@ -2,19 +2,22 @@ import { Body, Controller, DefaultValuePipe, Get, HttpStatus, NotFoundException,
 import { CreateUserDto } from "src/dto/apitest/request/create-user.dto";
 import { PipeService } from "./pipe.service";
 import { AuthService } from "../auth/auth.service";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
 // import { ValidationPipe } from './validation.pipe';
 
+@ApiTags('pipe 유효성검사')
 @Controller('/pipetest')
 export class PipeController {
     constructor(private readonly pipetestservice: PipeService, 
         private readonly authuserservice: AuthService) {}
 
-
+    @ApiOperation({summary: 'pipe 구축 test api', description: 'pipe 구축 test'})
     @Get('/')
     test() {
         return 'dddd';
     }
 
+    @ApiOperation({summary: 'name, email, paswd api', description: 'name, email, paswd'})
     @Post('/users')
     create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
         return this.pipetestservice.create(createUserDto);
@@ -36,6 +39,7 @@ export class PipeController {
     //     // });
     // }
 
+    @ApiOperation({summary: 'pipe 파리미터 값 없으면 0, 20 api', description: 'pipe 파리미터 값 없으면 0, 20'})
     @Get('/default')
     findAll(
         @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset: number,
@@ -46,7 +50,8 @@ export class PipeController {
         // return 'ddd';
         return this.pipetestservice.pipetest1();
     }
-        
+    
+    @ApiOperation({summary: 'id가 number type인지 검증하는 pipe api', description: 'id가 number type인지 검증하는 pipe'})
     @Get(':id')
     pipetest(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number) {
         console.log('pipe controllers in');
@@ -55,5 +60,4 @@ export class PipeController {
         return result;
     }
 
-    // @UseGuards(Jw)
 }

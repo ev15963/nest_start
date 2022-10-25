@@ -1,10 +1,11 @@
 import { Body, Controller, Get, NotFoundException, Post, Query, UseGuards, Headers, Param } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { ApiBearerAuth } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { JwtAuthGuard } from "src/grard/auth.guard";
 import { AuthService } from "./auth.service";
 
 @Controller('/auth')
+@ApiTags('인증 api')
 export class AuthController {
 
     constructor(private readonly authservice: AuthService) {}
@@ -49,7 +50,10 @@ export class AuthController {
     // }
 
     // 회원가입 메일 인증 전송 api
+    @ApiBearerAuth()
+    @UseGuards(AuthGuard())
     @Post()
+    @ApiOperation({summary: '메일인증 전송 api', description: '메일 인증'})
     async createUser(@Body('name') name: string, @Body('email') email: string, @Body('password') password: string) : Promise<void> {
         console.log(name, 'name');
         await this.authservice.createUser(name, email, password);
@@ -61,7 +65,10 @@ export class AuthController {
     
 //    }
    
+   @ApiBearerAuth()
+   @UseGuards(AuthGuard())
    @Post('/email-verify')
+   @ApiOperation({summary: '이메일 확인 api', description: '이메일 확인'})
    async verifyEmail(@Query() signupVerifyToken: string) :Promise<string> {
        console.log(signupVerifyToken, 'signupVerifyToken');
         const user = await this.authservice.findOne({signupVerifyToken});
@@ -79,8 +86,10 @@ export class AuthController {
         })
     }
     
+    @ApiBearerAuth()
     @UseGuards(AuthGuard())
     @Post('/login')
+    @ApiOperation({summary: '로그인 api', description: '로그인'})
     async login(@Body('email') email: string, @Body('password') password: string, @Headers() headers: any): Promise<string> {
         console.log('/login in');
         // console.log(headers, 'headers');
