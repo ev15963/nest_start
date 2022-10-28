@@ -48,15 +48,13 @@ async function bootstrap() {
   //     whitelist: true,
   //     transform: true,
   //   }),
-  // ); 
+  // );
   // //setupSwagger(app)
   // app.useGlobalFilters(new HttpExceptionFilter());
-
 
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
   }));
-
 
 
   await app.listen(3000);

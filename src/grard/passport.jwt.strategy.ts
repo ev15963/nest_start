@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { ExtractJwt, Strategy, VerifiedCallback } from 'passport-jwt';
+import { Strategy } from 'passport-local';
+import { ExtractJwt, VerifiedCallback } from 'passport-jwt';
 import { PassportStrategy } from "@nestjs/passport";
 import { AuthService } from "../modules/auth/auth.service";
 // import { Payload } from "./payload.interface";
