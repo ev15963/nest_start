@@ -14,6 +14,6 @@ export class CatsController {
     // return 'This action returns all cats';
     const result = this.catsService.getCat();
 
-    return 'cicdddd'+result;
+    return 'ddd'+result;
   }
 }
