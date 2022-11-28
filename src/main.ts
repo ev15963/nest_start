@@ -57,7 +57,7 @@ async function bootstrap() {
   }));
 
 
-  await app.listen(3000);
+  await app.listen(3000, '0.0.0.0');
 
   console.log(process.env.LOGGING, 'is true');
   console.log('main in');

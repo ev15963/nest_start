@@ -1,0 +1,45 @@
+# fly.toml file generated for wispy-sunset-2598 on 2022-11-03T15:27:01+09:00
+
+app = "wispy-sunset-2598"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+#  MY_SPECIAL_ENV = "some_value"
+#  MAX_PLAYER_COUNT = "15"
+#	PORT = "3000"
+#	NEW_VARIABLE = "value"
+
+#[experimental]
+#  allowed_public_ports = [80, 443]
+#  auto_rollback = true
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+  http_checks = []
+  processes = ["app"]
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 2000
+    soft_limit = 200
+	type = "connections"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "80"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
+
+  [[services.tcp_checks]]
+    grace_period = "60s"
+	interval = "15s"
+	restart_limit = 6
+    timeout = "2s"
