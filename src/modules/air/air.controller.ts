@@ -9,11 +9,12 @@ export class AirController {
 
   @Post()
   create(@Body() createAirDto: CreateAirDto) {
-    return this.airService.create(createAirDto);
+    return this.airService.create();
   }
 
   @Get()
   findAll() {
+    console.log(`findall in`);
     return this.airService.findAll();
   }
 

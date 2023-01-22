@@ -12,8 +12,24 @@ export class AirService {
     private users: Repository<TBL_AIR>,
   ) { }
   
-  create(createAirDto: CreateAirDto) {
-    return 'This action adds a new air';
+//  
+
+  create() {
+    console.log(this.users.insert({
+      sigun_cd: '1', 
+      sigun_nm: '용인시', 
+      mesurstn_nm: '이동읍',
+      instl_yy: '', 
+      mesrnw_nm: '도시대기',  
+      mesure_day_tm: '2021-01-01 01:00', 
+      sua_gas_dnst_vl: '0.002', 
+      comnxd_dnst_vl: '0.5',  
+      no2_dnst_vl: '0.026',  
+      ozone_dnst_vl: '0.005', 
+      finedust_pm10_dnst_vl: '36', 
+      finedust_pm2_5_dnst_vl: '26',
+  }))
+    // return 'This action adds a new air';
   }
 
   async findAll() {
