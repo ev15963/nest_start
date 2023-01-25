@@ -1,6 +1,11 @@
 name: Fly Deploy
 on: [push]
 env:
+  F_HOST: ${{ secrets.F_HOST }}
+  F_PORT: ${{ secrets.F_PORT }}
+  F_USERNAME: ${{ secrets.F_USERNAME }}
+  F_PASSWD: ${{ secrets.F_PASSWD }}
+  F_DATABASE: ${{ secrets.F_DATABASE }}
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
   deploy:
