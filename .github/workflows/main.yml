@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo -e 'F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE' >> ./env/.config.env
+          echo -e 'F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE' >> /env/.config.env
   deploy:
       name: Deploy app
       runs-on: ubuntu-latest
