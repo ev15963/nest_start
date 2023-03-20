@@ -36,6 +36,7 @@ export class AirService {
     console.log(this.users.find({
       select : ["tbl_air_seq", "sigun_cd"]
     }), 'ddd');
+    console.log(+process.env.F_PORT);
     return this.users.find({
       select : ["tbl_air_seq", "sigun_cd"]
     });
