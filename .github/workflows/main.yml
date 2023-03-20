@@ -8,11 +8,11 @@ env:
   F_DATABASE: ${{ secrets.F_DATABASE }}
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
-  # echo:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - run: |
-  #         echo -e 'F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE' >> ../../env/.config.env
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo -e 'F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE' >> ../../env/.config.env
   deploy:
       name: Deploy app
       runs-on: ubuntu-latest
