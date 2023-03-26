@@ -14,9 +14,9 @@ jobs:
       - run: |
           touch ./env/.config.env
           echo "F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE" >> ./env/.config.env
-  create-env-file:
-    name: Create env file
-    runs-on: ubuntu-latest
+  # create-env-file:
+  #   name: Create env file
+  #   runs-on: ubuntu-latest
   deploy:
       name: Deploy app
       runs-on: ubuntu-latest
