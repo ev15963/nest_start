@@ -8,6 +8,14 @@ env:
   F_DATABASE: ${{ secrets.F_DATABASE }}
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE" >> ./env/.config.env
+  create-env-file:
+    name: Create env file
+    runs-on: ubuntu-latest
   deploy:
       name: Deploy app
       runs-on: ubuntu-latest
@@ -15,9 +23,6 @@ jobs:
         - uses: actions/checkout@v2
         - uses: superfly/flyctl-actions/setup-flyctl@master
         - run: flyctl deploy
-        - run: |
-           echo -e 'F_HOST=$F_HOST\nF_PORT=$F_PORT\nF_USERNAME=$F_USERNAME\nF_PASSWD=$F_PASSWD\nF_DATABASE=$F_DATABASE' >> ../../env/.config.env
- 
 
 #name: Environment Variable - Secrets
 #on: workflow_dispatch
