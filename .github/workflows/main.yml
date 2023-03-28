@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          touch ./env/.config.env
-          echo "F_HOST=$F_HOST\\nF_PORT=$F_PORT\\nF_USERNAME=$F_USERNAME\\nF_PASSWD=$F_PASSWD\\nF_DATABASE=$F_DATABASE" >> ./env/.config.env
+          touch ./.config.env
+          echo "F_HOST=$F_HOST\\nF_PORT=$F_PORT\\nF_USERNAME=$F_USERNAME\\nF_PASSWD=$F_PASSWD\\nF_DATABASE=$F_DATABASE" >> ./.config.env
   # create-env-file:
   #   name: Create env file
   #   runs-on: ubuntu-latest
