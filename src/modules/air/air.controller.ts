@@ -7,9 +7,15 @@ import { UpdateAirDto } from './dto/update-air.dto';
 export class AirController {
   constructor(private readonly airService: AirService) {}
 
+//  @Post()
+//  create(@Body() createAirDto: CreateAirDto) {
+//    return this.airService.create();
+//  }
+
   @Post()
-  create(@Body() createAirDto: CreateAirDto) {
-    return this.airService.create();
+  upsert() {
+    console.log(`upsert in`);
+    return this.airService.upsert();
   }
 
   @Get()
