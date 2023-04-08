@@ -113,7 +113,8 @@ export class AirService {
           "sigun_cd"= :SIGUN_CD, "sigun_nm"=:SIGUN_NM, "mesurstn_nm"=:MESURSTN_NM, "instl_yy"=:INSTL_YY,
           "mesrnw_nm"= :MESRNW_NM, "mesure_day_tm"=:MESURE_DAY_TM, "sua_gas_dnst_vl"=:SUA_GAS_DNST_VL,
           "comnxd_dnst_vl"=:COMNXD_DNST_VL, "no2_dnst_vl"=:NO2_DNST_VL, "ozone_dnst_vl"=:OZONE_DNST_VL,
-          "finedust_pm10_dnst_vl"=:FINEDUST_PM10_DNST_VL, "finedust_pm2_5_dnst_vl"=:FINEDUST_PM2_5_DNST_VL`)
+          "finedust_pm10_dnst_vl"=:FINEDUST_PM10_DNST_VL, "finedust_pm2_5_dnst_vl"=:FINEDUST_PM2_5_DNST_VL,
+          "update_at"= NOW()`)
         .setParameter('SIGUN_CD', SIGUN_CD)
         .setParameter('SIGUN_NM', SIGUN_NM)
         .setParameter('MESURSTN_NM', MESURSTN_NM)
