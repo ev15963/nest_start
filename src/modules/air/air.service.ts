@@ -62,7 +62,7 @@ export class AirService {
     return `This action removes a #${id} air`;
   }
 
-  async upsert() {
+  async upsert(): Promise<string> {
     console.log(`upsert in`);
     console.log(this.users);
     const columns = new TBL_AIR();
