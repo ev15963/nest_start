@@ -6,7 +6,7 @@ import { TBL_AIR } from '../../entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { HttpService } from "@nestjs/axios";
 import { Injectable, Logger } from "@nestjs/common";
-// import { Cron } from "@nestjs/schedule";
+import { Cron } from "@nestjs/schedule";
 import { lastValueFrom } from "rxjs";
 // import { sign } from 'crypto';
 
@@ -62,6 +62,7 @@ export class AirService {
     return `This action removes a #${id} air`;
   }
 
+  @Cron('0 0 * * * *', {name: 'air_start'})
   async upsert(): Promise<string> {
     console.log(`upsert in`);
     console.log(this.users);
